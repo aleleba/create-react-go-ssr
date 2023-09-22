@@ -1,0 +1,57 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "noEmit": false,
+    "jsx": "react-jsx",
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "isolatedModules": false,
+    "typeRoots" : ["./src/@types", "./node_modules/@types"],
+    "types": [
+      "react", 
+      "react-dom", 
+      "node"
+    ],
+    "sourceMap": false,
+    "baseUrl": ".",
+    "outDir": "build",
+    "skipLibCheck": true,
+    "noImplicitAny": false,
+    "paths": {
+      "@components/*": ["src/frontend/components/*"],
+      "@components": ["src/frontend/components"],
+      "@styles/*": ["src/frontend/styles/*"],
+      "@styles": ["src/frontend/styles"],
+      "@actions/*": ["src/frontend/actions/*"],
+      "@actions": ["src/frontend/actions"],
+      "@reducers/*": ["src/frontend/reducers"],
+      "@reducers": ["src/frontend/reducers"],
+      "@config/*": ["config/*"],
+      "@config": ["config"],
+      "@mocks/*": ["src/__mocks__/*"],
+      "@mocks": ["src/__mocks__"]
+    }
+  },
+  "include": [
+    "."
+  ],
+  "exclude": [
+   "node_modules",
+   "build",
+   "PRNameGenerator.ts",
+   "cypress.config.ts"
+  ]
+}

@@ -1,0 +1,10 @@
+#Build
+build
+#Webpack
+webpack.config.ts
+webpack.config.dev.ts
+webpack.config.dev.server.ts
+webpack.cy.config.ts
+#Service Worker
+service-worker.ts
+serviceWorkerRegistration.ts
