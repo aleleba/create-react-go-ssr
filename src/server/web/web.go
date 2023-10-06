@@ -32,6 +32,7 @@ func RegisterHandlers(e *echo.Echo, paths []string) {
             //return c.File(filePath)
             url := c.Request().URL.String()
             component := utils.JsxToString(url)
+            preloadedState := utils.GetPreloadedState();
             html := `<!DOCTYPE html>
                         <html lang="es">
                             <head>
@@ -47,9 +48,9 @@ func RegisterHandlers(e *echo.Echo, paths []string) {
                             </head>
                             <body>
                                 <div id="app">`+ component +`</div>
-                                <!-- <script>
-                                    window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
-                                </script> -->
+                                <script>
+                                    window.__PRELOADED_STATE__ = JSON.stringify(`+ preloadedState+`).replace(/</g, '\\u003c')
+                                </script>
                                 <script src="assets/app-frontend.js" type="text/javascript"></script>
                                 <script src="assets/vendor-vendors.js" type="text/javascript"></script>
                             </body>

@@ -10,7 +10,7 @@ import { config } from '../../config';
 
 import './styles/global.scss';
 import App from './components/App';
-// import serviceWorkerRegistration from '../../serviceWorkerRegistration';
+import serviceWorkerRegistration from '../../serviceWorkerRegistration';
 
 declare global {
 	interface Window {
@@ -72,10 +72,10 @@ ENV === 'production' && hydrateRoot(container,
     </Provider>
 ); */
 
-/* if((ENV) && (ENV === 'production')){
+if((ENV) && (ENV === 'production')){
 	serviceWorkerRegistration();
-} */
+}
 
-/* if(module.hot){
+/*if(module.hot){
 	module.hot.accept();
-} */
+}*/

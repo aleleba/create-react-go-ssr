@@ -1,5 +1,6 @@
 import path  from 'path';
 import fs from 'fs';
+import dotenv from 'dotenv'
 import { config as envConfig } from './config';
 import webpack from 'webpack';
 import CompressionWebpackPlugin from 'compression-webpack-plugin';
@@ -15,7 +16,8 @@ import { resolveTsAliases } from 'resolve-ts-aliases';
 const ROOT_DIR = path.resolve(__dirname);
 const resolvePath = (...args) => path.resolve(ROOT_DIR, ...args);
 const BUILD_DIR = resolvePath(__dirname + '/src/server/web/dist');
-const BUILD_DIR_CONVERSION = resolvePath(__dirname + '/src/server/web/utils');
+const BUILD_DIR_CONVERSION = resolvePath(__dirname + '/src/server/web/conversion');
+const BUILD_DIR_GET_STATE = resolvePath(__dirname + '/src/server/web/getstate');
 //const { InjectManifest } = require('workbox-webpack-plugin');
 //const nodeExternals = require('webpack-node-externals');
 const alias = resolveTsAliases(path.resolve('tsconfig.json'));
@@ -41,6 +43,17 @@ if(fs.existsSync(`${ROOT_DIR}/public/img`)){
 		from: `${ROOT_DIR}/public/img`, to: 'assets/img', 
 	});
 }
+
+ // call dotenv and it will return an Object with a parsed key 
+ const env = dotenv.config().parsed;
+  
+ // reduce it to a nice object, the same as before
+const envKeys = Object.keys(dotenv.config({}).parsed || {}).reduce((prev, next) => {
+	if (dotenv.config().parsed && env && env[next]) {
+		prev[`process.env.${next}`] = JSON.stringify(env[next]);
+	}
+	return prev;
+}, {});
 
 const configReact = {
 	entry: {
@@ -112,6 +125,7 @@ const configReact = {
 		}),
 		new ESLintPlugin(),
 		new webpack.EnvironmentPlugin({
+			envKeys,
 			...envConfig,
 		}),
 		new CopyPlugin({
@@ -200,9 +214,67 @@ const configTSXConversion = {
 			],
 		}),
 		new ESLintPlugin(),
-		new webpack.EnvironmentPlugin({
-			...envConfig,
+	],
+	optimization: {
+		minimize: true,
+		minimizer: [
+			new CssMinimizerPlugin(),
+			new TerserPlugin(),
+		],
+	},
+};
+
+const configGetPreloadedState = {
+	entry: {
+		getPreloadedState: `${ROOT_DIR}/src/frontend/getPreloadedState/getPreloadedState.ts`,
+	},
+	output: {
+		path: BUILD_DIR_GET_STATE,
+		//filename: 'assets/app-[name]-[fullhash].js',
+		filename: '[name].js',
+		publicPath: envConfig.PUBLIC_URL,
+		globalObject: 'this',
+	},
+	resolve: {
+		extensions: ['.js', '.jsx','.ts','.tsx', '.json'],
+		alias
+	},
+	mode: 'production',
+	module: {
+		rules: [
+			{
+				test: /\.(js|jsx|ts|tsx)$/,
+				exclude: /node_modules/,
+				use: {
+					loader: 'babel-loader',
+				},
+			},
+			{
+				test: /\.(css|sass|scss)$/,
+				use: [
+					MiniCssExtractPlugin.loader,
+					'css-loader',
+					'sass-loader',
+				], 
+			},
+		],
+	},
+	plugins: [
+		new CompressionWebpackPlugin({
+			test: /\.(js|css)$/,
+			filename: '[path][base].gz',
 		}),
+		new MiniCssExtractPlugin({
+			//filename: 'assets/[name]-[fullhash].css',
+			filename: '[name].css',
+		}),
+		new CleanWebpackPlugin({
+			cleanOnceBeforeBuildPatterns: [
+				'**/*',
+				'!server/**',
+			],
+		}),
+		new ESLintPlugin(),
 	],
 	optimization: {
 		minimize: true,
@@ -213,4 +285,4 @@ const configTSXConversion = {
 	},
 };
   
-export default [configReact, configTSXConversion];
+export default [configReact, configTSXConversion, configGetPreloadedState];

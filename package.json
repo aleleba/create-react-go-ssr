@@ -1,15 +1,12 @@
 {
   "name": "@aleleba/create-react-go-ssr",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Starter Kit of server side render of react",
   "bin": "./bin/cli.js",
   "main": "src/server/index",
   "scripts": {
-    "start": "webpack watch --config webpack.config.ts",
-    "buildTsxToString": "webpack --config webpack.config.convert.ts",
-    "start:dev": "rm -rf build && webpack --mode=development --config webpack.config.dev.server.ts",
-    "start:dev-win": "(if exist build rmdir /s /Q build) && webpack --mode=development --config webpack.config.dev.server.ts",
-    "build": "webpack-cli --config webpack.config.ts",
+    "start-frontend:dev": "webpack watch --config webpack.config.ts",
+    "start-server:dev": "cd src/server && go run main.go",
     "lint": "eslint ./ --ext .js --ext .ts --ext .jsx --ext .tsx",
     "lint:fix": "eslint ./ --ext .js --ext .ts --ext .jsx --ext .tsx --fix",
     "test": "jest",

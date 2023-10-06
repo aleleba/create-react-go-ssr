@@ -1,6 +1,6 @@
 # Create React SSR
 
-This project aims to have a starter kit for creating a new React app with Server Side Rendering and tools that generally go along with it.
+This project aims to have a starter kit for creating a new React app with Server Side Rendering with a backend in go and tools that generally go along with it.
 
 It is not a project like create-react-app, create-react-app is used as a starter kit that handles all your scripts underneath, this is a project for developers who want more control over their application.
 
@@ -16,7 +16,7 @@ Typescript | 5.2.2
 ## Setup
 To create a new project run in the terminal:
 ```
-npx @aleleba/create-react-ssr app-name
+npx @aleleba/create-react-go-ssr app-name
 ```
 Then run:
 ```

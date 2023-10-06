@@ -5,12 +5,12 @@ import (
 	"os/exec"
 )
 
-func JsxToString(url string) string {
+func GetPreloadedState() string {
     // Set the path to the jsxToString.js file
-    jsFilePath := "./web/conversion/tsxToString.js"
+    jsFilePath := "./web/getstate/getPreloadedState.js"
 
     // Create the command to run Node.js with the jsxToString.js file
-    cmd := exec.Command("node", jsFilePath, url)
+    cmd := exec.Command("node", jsFilePath)
 
     // Get a pipe to the standard input of the Node.js process
     stdin, err := cmd.StdinPipe()
@@ -20,7 +20,7 @@ func JsxToString(url string) string {
     }
 
     // Write the URL parameter to the standard input of the Node.js process
-    fmt.Fprintf(stdin, "%s\n", url)
+    //fmt.Fprintf(stdin, "%s\n", url)
 
     // Close the standard input pipe
     stdin.Close()
