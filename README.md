@@ -29,34 +29,29 @@ This is an exaple of config.
 ENV= #Default production
 #App Port
 PORT= #Default 80
-#PUBLIC URL
-PUBLIC_URL= #Default 'auto'
-#Prefix URL
-PREFIX_URL= #Default ''
-#ONLY EXACT PATH
-ONLY_EXACT_PATH= #Default false
 ```
-The default environment is production, the app port defauld is 80 and the default public url is "auto", use prefix url if you want a prefix on base url, use exact path to validate if you want to have strict exact paths.
+The default environment is production and the app port defauld is 80.
 
 ### For Development
 In the terminal run:
 ```
-npm run start:dev
+npm run start-frontend:dev
+npm run start-server:dev
 ```
 The ENV enviroment variable should be "development" and choose the port of your preference with the enviroment variable PORT.
 
 You will find the root component on:
 ```
-scr/frontend/components/App.tsx
+src/frontend/components/App.tsx
 ```
 You will find the Initial Component on:
 ```
-scr/frontend/components/InitialComponent.tsx
+src/frontend/components/InitialComponent.tsx
 ```
 
 The manage of the routes you should find on:
 ```
-scr/routes
+src/routes
 ```
 It is using "useRoutes" hook for working, more information for this here: (https://reactrouter.com/docs/en/v6/api#useroutes)
 
