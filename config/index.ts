@@ -4,6 +4,7 @@ export const deFaultValues = {
 	PUBLIC_URL: 'auto',
 	PREFIX_URL: '',
 	ONLY_EXACT_PATH: false,
+	HOST: 'localhost',
 };
 
 export const config = {
@@ -12,6 +13,7 @@ export const config = {
 	PUBLIC_URL: process.env.PUBLIC_URL ? process.env.PUBLIC_URL : deFaultValues.PUBLIC_URL,
 	PREFIX_URL: process.env.PREFIX_URL ? process.env.PREFIX_URL : deFaultValues.PREFIX_URL,
 	ONLY_EXACT_PATH: process.env.ONLY_EXACT_PATH ? process.env.ONLY_EXACT_PATH === 'true' : deFaultValues.ONLY_EXACT_PATH,
+	HOST: process.env.HOST ? process.env.HOST : deFaultValues.HOST,
 };
 
 export default config;

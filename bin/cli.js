@@ -102,7 +102,7 @@ if(!cleanGitHistory) process.exit(-1);
 
 console.log('Congratulations! You are ready. Follow the following commands to start');
 console.log(`cd ${repoName}`);
-console.log('Create a .env file with ENV=development(defauld: production), PORT=3000 (default: 80)');
+console.log('Create a .env file with ENV=development(default: production), PORT=3000 (default: 80), HOST=domain.com (default: localhost)');
 console.log('Then you can run: npm start-frontend:dev');
 console.log('Then you can run: npm start-server:dev');
 
