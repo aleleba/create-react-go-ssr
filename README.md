@@ -29,6 +29,8 @@ This is an exaple of config.
 ENV= #Default production
 #App Port
 PORT= #Default 80
+#Host
+HOST= #Default localhost
 ```
 The default environment is production and the app port defauld is 80.
 

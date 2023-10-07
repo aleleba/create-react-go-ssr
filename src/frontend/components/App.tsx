@@ -5,7 +5,7 @@ import { config } from '../../../config';
 const App = () => {
 	if(config.ENV === 'development') {
 		useEffect(() => {
-			const ws = new WebSocket('wss://nmr4jbx8-3000.use.devtunnels.ms/ws');
+			const ws = new WebSocket(`wss://${config.HOST}/ws`);
 			ws.onmessage = (event) => {
 				if (event.data === 'reload') {
 					window.location.reload();
