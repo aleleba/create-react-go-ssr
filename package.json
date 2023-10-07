@@ -1,14 +1,14 @@
 {
   "name": "@aleleba/create-react-go-ssr",
-  "version": "0.1.1",
-  "description": "Starter Kit of server side render of react",
+  "version": "1.0.0",
+  "description": "Starter Kit of server side render of react with backend in go",
   "bin": "./bin/cli.js",
-  "main": "src/server/index",
   "scripts": {
     "start": "cd build/server && ./react-server",
     "start-frontend:dev": "webpack watch --config webpack.config.ts",
     "start-server:dev": "cd src/server && go run main.go",
     "build": "webpack --config webpack.config.ts && cd src/server && go build && mkdir ../../build && cp -r ./ ../../build/server && cp -r ../routes ../../build/routes && rm -rf ./react-server",
+    "build:frontend": "webpack --config webpack.config.ts",
     "lint": "eslint ./ --ext .js --ext .ts --ext .jsx --ext .tsx",
     "lint:fix": "eslint ./ --ext .js --ext .ts --ext .jsx --ext .tsx --fix",
     "test": "jest",
@@ -34,9 +34,9 @@
   "author": "Alejandro Lembke Barrientos",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/aleleba/create-react-ssr/issues"
+    "url": "https://github.com/aleleba/create-react-go-ssr/issues"
   },
-  "homepage": "https://github.com/aleleba/create-react-ssr#readme",
+  "homepage": "https://github.com/aleleba/create-react-go-ssr#readme",
   "dependencies": {
     "@babel/register": "^7.22.15",
     "dotenv": "^16.3.1",
