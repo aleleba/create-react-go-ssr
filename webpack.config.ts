@@ -18,7 +18,7 @@ const resolvePath = (...args) => path.resolve(ROOT_DIR, ...args);
 const BUILD_DIR = resolvePath(__dirname + '/src/server/web/dist');
 const BUILD_DIR_CONVERSION = resolvePath(__dirname + '/src/server/web/conversion');
 const BUILD_DIR_GET_STATE = resolvePath(__dirname + '/src/server/web/getstate');
-//const { InjectManifest } = require('workbox-webpack-plugin');
+const { InjectManifest } = require('workbox-webpack-plugin');
 //const nodeExternals = require('webpack-node-externals');
 const alias = resolveTsAliases(path.resolve('tsconfig.json'));
 
@@ -131,10 +131,10 @@ const configReact = {
 		new CopyPlugin({
 			patterns: copyPatterns
 		}),
-		/*new InjectManifest({
+		new InjectManifest({
 			swSrc: './service-worker.ts',
 			swDest: 'service-worker.js',
-		}),*/
+		}),
 	],
 	optimization: {
 		minimize: true,

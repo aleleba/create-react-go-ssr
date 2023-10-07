@@ -1,12 +1,14 @@
 {
   "name": "@aleleba/create-react-go-ssr",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Starter Kit of server side render of react",
   "bin": "./bin/cli.js",
   "main": "src/server/index",
   "scripts": {
+    "start": "cd build/server && ./react-server",
     "start-frontend:dev": "webpack watch --config webpack.config.ts",
     "start-server:dev": "cd src/server && go run main.go",
+    "build": "webpack --config webpack.config.ts && cd src/server && go build && mkdir ../../build && cp -r ./ ../../build/server && cp -r ../routes ../../build/routes && rm -rf ./react-server",
     "lint": "eslint ./ --ext .js --ext .ts --ext .jsx --ext .tsx",
     "lint:fix": "eslint ./ --ext .js --ext .ts --ext .jsx --ext .tsx --fix",
     "test": "jest",
@@ -23,6 +25,8 @@
   "keywords": [
     "create react app",
     "react",
+    "go",
+    "golang",
     "ssr",
     "typescript",
     "redux"

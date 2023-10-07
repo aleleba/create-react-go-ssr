@@ -21,6 +21,10 @@ func main() {
     //Getting the port from the environment
     port := os.Getenv("PORT")
 
+    if(port == "") {
+        port = "80"
+    }
+
     paths := utils.GetRoutes()
 
     e := echo.New()
