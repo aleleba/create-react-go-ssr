@@ -26,7 +26,7 @@ jobs:
         with:
           component: true
   publish-npm:
-    needs: [ build, cypress-run, cypress-run-component ]
+    needs: [ build, cypress-run-component ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
