@@ -1,6 +1,6 @@
 {
   "name": "@aleleba/create-react-go-ssr",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Starter Kit of server side render of react with backend in go",
   "bin": "./bin/cli.js",
   "scripts": {
